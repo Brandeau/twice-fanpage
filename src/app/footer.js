@@ -3,7 +3,7 @@
 export default function Footer(){
     return(
         <>
-            <p>This is the footer</p>
+            <p className="w-full">This is the footer</p>
         </>
     )
 }
