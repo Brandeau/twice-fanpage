@@ -4,7 +4,7 @@ import Image from "next/image";
 export function Card({title, src, description}){
     return(
         <>
-            <div>
+            <div className="p-4">
                 <Image 
                     src={src}
                     width={200}

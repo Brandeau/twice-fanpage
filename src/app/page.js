@@ -7,11 +7,11 @@ import { Card } from "./ui/cards";
 export default function Page() {
   return (
     <>
-      <main className="flex flex-row justify-between p-4">
-        <Card title="albums" src={between12} width="200" height="200" alt="album cover"></Card>
-        <Card title="members" src={between12} width="200" height="200" alt="album cover"></Card>
-        <Card title="story" src={between12} width="200" height="200" alt="album cover"></Card>
-        <Card title="reality" src={between12} width="200" height="200" alt="album cover"></Card>
+      <main className="flex flex-row justify-between p-6">
+        <Card title="albums" src={between12}  description="album cover"></Card>
+        <Card title="members" src={between12}  description="album cover"></Card>
+        <Card title="story" src={between12}  description="album cover"></Card>
+        <Card title="reality" src={between12} description="album cover"></Card>
       </main>
     </>
   );
