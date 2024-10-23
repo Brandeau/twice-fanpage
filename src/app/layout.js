@@ -30,10 +30,7 @@ export default function RootLayout({ children }) {
         className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <div className="flex flex-row">
-          <Sidenav />
-          {children}
-        </div>
+        {children}
         <Footer />
       </body>
     </html>
