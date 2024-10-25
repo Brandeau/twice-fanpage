@@ -1,25 +1,21 @@
+'use client'
+
 import { Card } from "../ui/cards";
 import momo from '../../public/momo.jpg'
+import { usePathname } from "next/navigation";
 
 const members = [
-    {title:"members/nayeon", src:momo, description:"nayeon"},
-    {title:"members/jeongyeon", src:momo, description:"jeongyeon"},
-    {title:"members/momo", src:momo, description:"momo"},
-    {title:"members/sana", src:momo, description:"sana"},
-    {title:"members/jihyo", src:momo, description:"jihyo"},
-    {title:"members/mina", src:momo, description:"mina"},
-    {title:"members/dahyun", src:momo, description:"dahyun"},
-    {title:"members/chaeyoung", src:momo, description:"chaeyoung"},
-    {title:"members/tzuyu", src:momo, description:"tzuyu"},
-    
+    {href:"momo", src:momo, title:"momo",description:"momo"},
+    {href:"nayeon", src:momo, title:"nayeon",description:"nayeon"},
 ]
 
-export default function Members(){
+export default function Page(){
+    const path = usePathname();
     return(
         <>
             {members.map((member) =>{
             return(
-                <Card title={member.title} src={member.src}  description={member.description}></Card>
+                <Card title={member.title} src={member.src} href={`${path}/${member.href}`} description={member.description}></Card>
                 );
             })}
         </>
