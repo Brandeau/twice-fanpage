@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Member {
+  id             Int    @id @default(autoincrement())
+  first_name     String
+  last_name      String
+  first_name_jap String
+  last_name_jap  String
+  first_name_kor String
+  last_name_kor  String
+  first_name_ch  String
+  last_name_ch   String
+  date_of_birth  Int
+  country_id     Int
+}
+
+model countries {
+  id       Int        @id @default(autoincrement())
+  name     String?    @db.VarChar(50)
+  members  members[]
+  releases releases[]
+}
+
+model groupings {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(50)
+  type              String              @db.VarChar(10)
+  members_groupings members_groupings[]
+  release_groups    release_groups[]
+}
+
+model members {
+  id                Int                 @id @default(autoincrement())
+  first_name        String              @db.VarChar(50)
+  last_name         String              @db.VarChar(50)
+  first_name_jap    String?             @db.VarChar(50)
+  last_name_jap     String?             @db.VarChar(50)
+  first_name_kor    String?             @db.VarChar(50)
+  last_name_kor     String?             @db.VarChar(50)
+  first_name_ch     String?             @db.VarChar(50)
+  last_name_ch      String?             @db.VarChar(50)
+  date_of_birth     DateTime?           @db.Date
+  country_id        Int?
+  countries         countries?          @relation(fields: [country_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_country")
+  members_groupings members_groupings[]
+}
+
+model members_groupings {
+  member_id   Int
+  grouping_id Int
+  members     members   @relation(fields: [member_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_member")
+  groupings   groupings @relation(fields: [grouping_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_members_groupings_groupings")
+
+  @@id([member_id, grouping_id])
+}
+
+model release_formats {
+  id       Int        @id @default(autoincrement())
+  format   String?    @db.VarChar(50)
+  releases releases[]
+}
+
+model release_groups {
+  id                   Int                   @id @default(autoincrement())
+  name                 String                @db.VarChar(50)
+  grouping_id          Int
+  type_id              Int?
+  release_groups_types release_groups_types? @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_type")
+  groupings            groupings             @relation(fields: [grouping_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_unit")
+  releases             releases[]
+}
+
+model release_groups_types {
+  id             Int              @id @default(autoincrement())
+  type           String           @db.VarChar(50)
+  release_groups release_groups[]
+}
+
+model releases {
+  id               Int               @id @default(autoincrement())
+  title            String?           @db.VarChar(50)
+  release_year     Int?
+  format_id        Int?
+  country_id       Int?
+  release_group_id Int
+  annotation       String?           @db.VarChar(50)
+  countries        countries?        @relation(fields: [country_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_country")
+  release_formats  release_formats?  @relation(fields: [format_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_format")
+  release_groups   release_groups    @relation(fields: [release_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_release_group")
+  releases_tracks  releases_tracks[]
+}
+
+model releases_tracks {
+  release_id Int
+  track_id   Int
+  track_num  Int
+  tracks     tracks   @relation(fields: [track_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_release_tracks_tracks")
+  releases   releases @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_releases_tracks_releases")
+
+  @@id([release_id, track_id])
+}
+
+model tracks {
+  id              Int               @id @default(autoincrement())
+  title           String            @db.VarChar(50)
+  title_kor       String?           @db.VarChar(50)
+  title_jap       String?           @db.VarChar(50)
+  featuring       String?           @db.VarChar(50)
+  releases_tracks releases_tracks[]
+}
