@@ -16,7 +16,7 @@ const links = [
         name: 'Albums', href: '/albums'
     },
     {
-        name: 'Members and Subunits', href: '/members'
+        name: 'Members', href: '/members'
     },
     {
         name: 'Reality', href: '/reality'
