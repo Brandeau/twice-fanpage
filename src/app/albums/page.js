@@ -27,11 +27,16 @@ export default function Page(){
     const path = usePathname();
     return(
         <>
-            {releaseGroups.res.map((releaseGroup) =>{
-            return(
-                <Card title={releaseGroup.name} src={`/images/releases/${releaseGroup.id}.webp`} href={`${path}/${releaseGroup.id}`} description="album cover"></Card>
-                );
-            })}
+            <div className="grid md:grid-cols-4 sm:grid-cols-1 self-center ">
+                {releaseGroups.res.map((releaseGroup) =>{
+                return(
+                        <>
+                            <Card title={releaseGroup.name} src={`/images/releases/${releaseGroup.id}.webp`} href={`${path}/${releaseGroup.id}`} description="album cover"></Card>
+                        </>
+                    );
+                    
+                })}
+            </div>
         </>
     )
 }

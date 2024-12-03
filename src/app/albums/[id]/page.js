@@ -27,26 +27,28 @@ export default function Page({ params }){
     return(
 
         <>
-            <h1>Versions</h1>
+            <h1 className="bg-red-200 p-5 rounded-xl text-center">Versions</h1>
             <br></br>
 
             {releaseGroups.releases.map((release) => {
                 return(
                     <>
-                        <p>{release.title}</p> 
-                        <p>{release.release_year}</p>
-                        <p>{release.countries.name}</p>
-                        <p>{release.release_formats?.format}</p>
-                        <p>{release.annotation}</p>
-                        <br></br>
-                        <h2>Tracklist</h2>
-                        <br></br>
-                        {release.releases_tracks.map((releases_track) =>{
-                            return (
-                            <p>{releases_track.tracks.title}</p>
-                            )
-                        })}
-                        <br></br>
+                        <div className="bg-red-200 p-10 rounded-xl m-10">
+                            <p>{release.title}</p> 
+                            <p>{release.release_year}</p>
+                            <p>{release.countries.name}</p>
+                            <p>{release.release_formats?.format}</p>
+                            <p>{release.annotation}</p>
+                            <br></br>
+                            <h2>Tracklist</h2>
+                            <br></br>
+                            {release.releases_tracks.map((releases_track) =>{
+                                return (
+                                <p>{releases_track.tracks.title}</p>
+                                )
+                            })}
+                            <br></br>
+                        </div>
                     </>
                 );
             })}
