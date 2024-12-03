@@ -1,10 +1,6 @@
 import Image from "next/image"
 import headerImage from '../../public/images/fanpage-header-image.png';
-import { Sixtyfour } from 'next/font/google';
 
-const sixtyfour = Sixtyfour({
-  subsets : ['latin']
-});
 
 export default function Header(){
     return (
