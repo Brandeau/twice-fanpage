@@ -36,17 +36,19 @@ export default function Page({ params }){
     const dateFormatted = dateOfBirth.substring(0, 10);
     return(
         <>
-            <Image 
-                src={`/images/members/${params.id}.jpg`}
-                width={200}
-                height={200}
-                alt=""
-            />
-           <p>{lastName} {firstName}</p>
-           <p>{lastKoreanName ? lastKoreanName : null}{firstKoreanName}</p>
-           <p>{lastJapaneseName ? lastJapaneseName : null}{firstJapaneseName ? firstJapaneseName : null}</p>
-           <p>{lastChineseName ? lastChineseName : null}{firstChineseName ? firstChineseName : null}</p>
-           <p>{`Date of Birth: ${dateFormatted}`}</p>
+            <div className="bg-red-200 p-10 rounded-xl">
+                <Image 
+                    src={`/images/members/${params.id}.jpg`}
+                    width={200}
+                    height={200}
+                    alt=""
+                />
+            <p>{lastName} {firstName}</p>
+            <p>{lastKoreanName ? lastKoreanName : null}{firstKoreanName}</p>
+            <p>{lastJapaneseName ? lastJapaneseName : null}{firstJapaneseName ? firstJapaneseName : null}</p>
+            <p>{lastChineseName ? lastChineseName : null}{firstChineseName ? firstChineseName : null}</p>
+            <p>{`Date of Birth: ${dateFormatted}`}</p>
+            </div>
         </>
     )
 }
