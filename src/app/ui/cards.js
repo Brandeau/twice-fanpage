@@ -2,12 +2,13 @@ import Link from "next/link";
 import { lusitana } from "./fonts";
 import Image from "next/image";
 
-export function Card({title, src, description}){
+
+export function Card({title, src, href, description}){
     return(
         <>
-            <div className="p-4 bg-gray-50 w-52 m-14 rounded-lg justify-center text-center">
+            <div className="p-4 bg-[#AA7D8D] w-52 m-14 rounded-lg justify-center text-center">
                 <Link
-                    href={`/${title}`}
+                    href={href}
                 >
                     <Image 
                         src={src}
