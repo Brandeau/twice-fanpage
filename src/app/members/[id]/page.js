@@ -20,7 +20,7 @@ export default function Page({ params }){
         };
 
         fetchMembers(); 
-    }, []);
+    }, [params.id]);
 
     if (!members) return <div>Loading...</div>
 

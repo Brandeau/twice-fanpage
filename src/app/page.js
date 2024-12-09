@@ -17,14 +17,12 @@ const sections = [
   {title: 'reality', src:ttt, href:"reality",description:"realities cover"}
 ]
     return (
-      <>
-        <main className="grid md:grid-cols-2 sm:grid-cols-1 self-center ">
-        {sections.map((section) =>{
-          return(
-          <Card title={section.title} src={section.src}  href={section.href} description={section.description}></Card>
-          );
-        })}
-        </main>
-      </>
+      <main className="grid md:grid-cols-2 sm:grid-cols-1 self-center ">
+      {sections.map((section, index) =>{
+        return(
+        <Card title={section.title} src={section.src}  href={section.href} description={section.description} key={index}></Card>
+        );
+      })}
+      </main>
     );
 }
