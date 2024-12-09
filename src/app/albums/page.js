@@ -13,28 +13,25 @@ export default function Page(){
     const [releaseGroups, setReleaseGroups] = useState(null);
 
     useEffect(() => {
+
         async function fetchReleaseGroups(){
             const res = await fetch(`/api/release_groups/`);
             const data = await res.json();
-            console.log({ res, data })
             setReleaseGroups(data)
         };
 
         fetchReleaseGroups(); 
     }, []);
 
-    if (!releaseGroups) return <div>Loading...</div>
     const path = usePathname();
+    if (!releaseGroups) return <div>Loading...</div>
     return(
         <>
             <div className="grid md:grid-cols-4 sm:grid-cols-1 self-center ">
-                {releaseGroups.res.map((releaseGroup) =>{
+                {releaseGroups.res.map((releaseGroup, index) =>{
                 return(
-                        <>
-                            <Card title={releaseGroup.name} src={`/images/releases/${releaseGroup.id}.webp`} href={`${path}/${releaseGroup.id}`} description="album cover"></Card>
-                        </>
-                    );
-                    
+                    <Card title={releaseGroup.name} src={`/images/releases/${releaseGroup.id}.webp`} href={`${path}/${releaseGroup.id}`} description="album cover" key={index}></Card>
+                    );    
                 })}
             </div>
         </>
